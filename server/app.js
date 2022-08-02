@@ -1,9 +1,13 @@
 const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
 const mongoose = require("mongoose");
+const cors = require('cors')
 const schema = require('./schema/schema')
 
 const app = express()
+
+//allow cross-origin requests
+app.use(cors())
 
 mongoose.connect('mongodb://localhost:27017/bookdb',
     {
@@ -24,6 +28,6 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }))
 
-app.listen(5000, () => {
-    console.log("listening on 5000 port");
+app.listen(5001, () => {
+    console.log("listening on 5001 port");
 })
